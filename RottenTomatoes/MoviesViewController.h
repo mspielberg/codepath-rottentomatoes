@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MoviesViewController.h
 //  RottenTomatoes
 //
 //  Created by Miles Spielberg on 2/2/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface MoviesViewController : UIViewController
+- (MoviesViewController *)initWithEndpoint:(NSURL *)endpoint;
 @end
-
