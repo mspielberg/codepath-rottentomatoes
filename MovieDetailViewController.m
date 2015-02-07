@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImageView+AnimationUtils.h"
 #import "UIImage+SVG.h"
+#import "UIImage+Crop.h"
 
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *largePosterView;
@@ -20,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *criticScoreLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *freshnessImage;
 @property (weak, nonatomic) IBOutlet UILabel *runtimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *runtimeImage;
 @property (weak, nonatomic) IBOutlet UILabel *mpaaRatingLabel;
@@ -35,10 +39,19 @@
     
     self.originalBackdropAlpha = self.backdropView.alpha;
     
-    self.titleLabel.text = self.movie[@"title"];
+    self.title = self.movie[@"title"];
+    self.titleLabel.text = self.title;
+    
+    self.yearLabel.text = [NSString stringWithFormat:@"%ld", (long)[self.movie[@"year"] longValue]];
+    self.criticScoreLabel.text = [NSString stringWithFormat:@"%ld%%", (long)[[self.movie valueForKeyPath:@"ratings.critics_score"] longValue]];
+    NSLog(@"criticsScore = %@", self.criticScoreLabel.text);
+    self.freshnessImage.image = [MovieDetailViewController freshnessImageFor:self.movie];
+    
     [self.runtimeImage setImage:[UIImage imageWithSVGNamed:@"clock" targetSize:CGSizeMake(16.0, 16.0) fillColor:[UIColor whiteColor]]];
     self.runtimeLabel.text = [NSString stringWithFormat:@"%ld", (long)[self.movie[@"runtime"] integerValue]];
+    
     self.mpaaRatingLabel.text = [NSString stringWithFormat:@"%@", self.movie[@"mpaa_rating"]];
+    
 //    [self.mpaaRatingLabel sizeToFit];
     self.synopsisLabel.text = self.movie[@"synopsis"];
     [self.synopsisLabel sizeToFit];
@@ -82,6 +95,19 @@
             self.backdropView.alpha = self.originalBackdropAlpha;
         }];
     }
+}
+
++ (UIImage *)freshnessImageFor:(NSDictionary *)movie {
+    UIImage *iconSheet = [UIImage imageNamed:@"icons-v2.png"];
+    UIImage *freshIcon = [iconSheet crop:CGRectMake(288.0, 48.0, 24.0, 24.0)];
+    UIImage *certifiedIcon = [iconSheet crop:CGRectMake(288.0, 72.0, 24.0, 24.0)];
+    UIImage *rottenIcon = [iconSheet crop:CGRectMake(288.0, 96.0, 24.0, 24.0)];
+    NSDictionary *mapping = @{
+                              @"Certified Fresh": certifiedIcon,
+                              @"Fresh": freshIcon,
+                              @"Rotten": rottenIcon
+                              };
+    return mapping[[movie valueForKeyPath:@"ratings.critics_rating"]];
 }
 
 @end

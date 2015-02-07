@@ -13,8 +13,6 @@
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder duration:(NSTimeInterval)duration {
     UIImageView __weak *weakSelf = self;
-    CFTimeInterval fetchStart = CACurrentMediaTime();
-
     [self setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:placeholder success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         if (request) {
             // image was not cached, fade it into place

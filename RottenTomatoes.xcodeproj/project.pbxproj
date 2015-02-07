@@ -22,6 +22,8 @@
 		91D4B9EF1A81C52B0040B884 /* dvd.svg in Resources */ = {isa = PBXBuildFile; fileRef = 91D4B9EE1A81C52B0040B884 /* dvd.svg */; };
 		91D4B9F61A82AA9C0040B884 /* UIImageView+AnimationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D4B9F51A82AA9C0040B884 /* UIImageView+AnimationUtils.m */; };
 		91D4B9F81A82D4CD0040B884 /* clock.svg in Resources */ = {isa = PBXBuildFile; fileRef = 91D4B9F71A82D4CD0040B884 /* clock.svg */; };
+		91D4BA011A82FB450040B884 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D4BA001A82FB450040B884 /* UIImage+Crop.m */; };
+		91D4BA031A82FBA10040B884 /* icons-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D4BA021A82FBA10040B884 /* icons-v2.png */; };
 		DE19517B837CDAE121CC27E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC1DC0DAD12F1F750B5D593 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,9 @@
 		91D4B9F41A82AA9C0040B884 /* UIImageView+AnimationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AnimationUtils.h"; sourceTree = "<group>"; };
 		91D4B9F51A82AA9C0040B884 /* UIImageView+AnimationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AnimationUtils.m"; sourceTree = "<group>"; };
 		91D4B9F71A82D4CD0040B884 /* clock.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clock.svg; sourceTree = "<group>"; };
+		91D4B9FF1A82FB450040B884 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		91D4BA001A82FB450040B884 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		91D4BA021A82FBA10040B884 /* icons-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons-v2.png"; sourceTree = "<group>"; };
 		94C224E10718A3D116B2AA69 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AAC1DC0DAD12F1F750B5D593 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,6 +100,7 @@
 		91D4B99C1A8082800040B884 = {
 			isa = PBXGroup;
 			children = (
+				91D4BA021A82FBA10040B884 /* icons-v2.png */,
 				91D4B9F71A82D4CD0040B884 /* clock.svg */,
 				91D4B9F01A82AA080040B884 /* Categories */,
 				91D4B9EE1A81C52B0040B884 /* dvd.svg */,
@@ -184,6 +190,8 @@
 			children = (
 				91D4B9F41A82AA9C0040B884 /* UIImageView+AnimationUtils.h */,
 				91D4B9F51A82AA9C0040B884 /* UIImageView+AnimationUtils.m */,
+				91D4B9FF1A82FB450040B884 /* UIImage+Crop.h */,
+				91D4BA001A82FB450040B884 /* UIImage+Crop.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -285,6 +293,7 @@
 				91D4B9F81A82D4CD0040B884 /* clock.svg in Resources */,
 				91D4B9D21A8083490040B884 /* MoviesViewController.xib in Resources */,
 				91D4B9D81A8087020040B884 /* MovieCell.xib in Resources */,
+				91D4BA031A82FBA10040B884 /* icons-v2.png in Resources */,
 				91D4B9EF1A81C52B0040B884 /* dvd.svg in Resources */,
 				91D4B9B61A8082800040B884 /* Images.xcassets in Resources */,
 			);
@@ -340,6 +349,7 @@
 				91D4B9D11A8083490040B884 /* MoviesViewController.m in Sources */,
 				91D4B9AE1A8082800040B884 /* AppDelegate.m in Sources */,
 				91D4B9F61A82AA9C0040B884 /* UIImageView+AnimationUtils.m in Sources */,
+				91D4BA011A82FB450040B884 /* UIImage+Crop.m in Sources */,
 				91D4B9E01A818BCB0040B884 /* MovieDetailViewController.m in Sources */,
 				91D4B9D71A8087020040B884 /* MovieCell.m in Sources */,
 				91D4B9AB1A8082800040B884 /* main.m in Sources */,

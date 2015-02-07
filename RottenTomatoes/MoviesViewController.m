@@ -10,15 +10,18 @@
 #import "MovieCell.h"
 #import "MovieDetailViewController.h"
 #import "UIImageView+AnimationUtils.h"
+#import "UIImage+Crop.h"
 #import "SVProgressHUD.h"
 
 @interface MoviesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@property (strong, nonatomic) UIImage *blankPoster;
 @property (strong, nonatomic) NSURL *moviesEndpoint;
 @property (strong, nonatomic) NSURL *activeEndpoint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 @property (atomic) CFTimeInterval lastSearchTextChangeTime;
+@property (weak, nonatomic) IBOutlet UILabel *networkFailureLabel;
 @end
 
 @implementation MoviesViewController
@@ -28,6 +31,7 @@
     if (self) {
         _moviesEndpoint = endpoint;
         _activeEndpoint = endpoint;
+        _blankPoster = [[UIImage imageNamed:@"icons-v2.png"] crop:CGRectMake(0.0, 0.0, 1.0, 1.0)];
     }
     return self;
 }
@@ -71,7 +75,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieCell"];
-    NSLog(@"Loaded cell %lx for row %ld", (unsigned long)cell, (long)indexPath.row);
+//    NSLog(@"Loaded cell %lx for row %ld", (unsigned long)cell, (long)indexPath.row);
     
     NSDictionary *movie = self.movies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
@@ -79,7 +83,7 @@
     [cell.synopsisLabel sizeToFit];
     
     NSURL *posterThumbUrl = [NSURL URLWithString:[movie valueForKeyPath:@"posters.thumbnail"]];
-    [cell.posterView setImageWithURL:posterThumbUrl placeholderImage:nil duration:0.3];
+    [cell.posterView setImageWithURL:posterThumbUrl placeholderImage:self.blankPoster duration:0.3];
     
     return cell;
 }
@@ -128,14 +132,19 @@
 - (void)refresh {
     [SVProgressHUD show];
     NSURLRequest *req = [NSURLRequest requestWithURL:self.activeEndpoint];
+    NSLog(@"Connecting to %@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError) {
         if (data) {
             NSDictionary *boxOffice = [NSJSONSerialization JSONObjectWithData:data options:0L error:nil];
             if (boxOffice) {
                 self.movies = boxOffice[@"movies"];
                 [SVProgressHUD dismiss];
+                self.networkFailureLabel.hidden = YES;
                 [self.tableView reloadData];
             }
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"Could not connect to network"];
+            self.networkFailureLabel.hidden = NO;
         }
     }];
 }

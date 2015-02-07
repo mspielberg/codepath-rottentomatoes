@@ -53,6 +53,7 @@
 
     UITabBarController *tbc = [[UITabBarController alloc] init];
     tbc.tabBar.barStyle = UIBarStyleBlack;
+    tbc.tabBar.tintColor = masterTint;
     tbc.viewControllers = @[boxOfficeNvc, topRentalsNvc];
     
     
