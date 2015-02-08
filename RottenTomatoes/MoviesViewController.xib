@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController">
             <connections>
                 <outlet property="networkFailureLabel" destination="Rfs-dt-mg1" id="cBM-4z-aGF"/>
+                <outlet property="searchBar" destination="mbT-0Z-xfV" id="xcx-sj-w8N"/>
                 <outlet property="tableView" destination="QAe-kk-Gm2" id="kVa-gw-Enz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

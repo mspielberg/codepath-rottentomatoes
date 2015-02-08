@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSURL *moviesEndpoint;
 @property (strong, nonatomic) NSURL *activeEndpoint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 @property (atomic) CFTimeInterval lastSearchTextChangeTime;
@@ -93,6 +94,7 @@
     detailController.thumbnail = ((MovieCell*)[tableView cellForRowAtIndexPath:indexPath]).posterView.image;
     detailController.movie = self.movies[indexPath.row];
     [self.navigationController pushViewController:detailController animated:YES];
+    [self.searchBar endEditing:NO];
     return nil;
 }
 
@@ -120,6 +122,14 @@
     }
     
     [self refresh];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar endEditing:NO];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar endEditing:NO];
 }
 
 #pragma mark Refresh control
